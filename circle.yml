@@ -15,8 +15,6 @@ dependencies:
     # Build the static site.
     - bin/sculpin generate
     - cd output_dev && ln -s ./ source
-    # Deploy Multidev environment
-    - bash scripts/deploy-multidev.sh
 test:
   pre:
     # Start Ghost Driver.
@@ -40,3 +38,7 @@ deployment:
     branch: master
     commands:
       - bash scripts/deploy-live.sh
+  multidev:
+    branch: /^(?!.*master).*$/
+    commands:
+      - bash scripts/deploy-multidev.sh
