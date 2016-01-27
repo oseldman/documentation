@@ -1,36 +1,23 @@
-# https://circleci.com/docs/configuration#machine
 machine:
   php:
-    # https://circleci.com/docs/environment#php
     version: 5.5.11
 
 dependencies:
   cache_directories:
     - ~/.composer/cache
-  pre:
-    - sudo apt-get update; sudo apt-get install libicu52
-    - bundle config build.nokogiri --use-system-libraries
-
   post:
-    # Build the static site.
     - bin/sculpin generate
     - cd output_dev && ln -s ./ source
 test:
   pre:
-    # Start Ghost Driver.
     - phantomjs --webdriver=8643:
        background: true
-    # Start Sculpin.
     - bin/sculpin server:
        background: true
   override:
-    # Run behat.
     - bin/behat
-    # Run a11y.
     - grunt
-    # Look for merge conflicts.
     - scripts/merge_conflicts.sh
-    # Run htmlproofer.
     - bundle exec rake
 
 deployment:
