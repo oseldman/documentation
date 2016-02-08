@@ -31,9 +31,15 @@ test:
     - scripts/merge_conflicts.sh
     # Run htmlproofer.
     - bundle exec rake
+    # Run wraith
+    - bundle exec wraith capture configs/wraith.yaml
 
 deployment:
   production:
     branch: master
     commands:
       - bash scripts/deploy-live.sh
+  multidev:
+    branch: /^(?!.*master).*$/
+    commands:
+      - bash scripts/deploy-wraith-diff.sh

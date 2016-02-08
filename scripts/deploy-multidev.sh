@@ -110,6 +110,9 @@ if [ "$CIRCLE_BRANCH" != "master" ] && [ "$CIRCLE_BRANCH" != "dev" ] && [ "$CIRC
     # Update CTA edit link so that the current branch is used
     sed -i '12s/master/'"$CIRCLE_BRANCH"'/g' source/_views/article.html
     sed -i '15s/master/'"$CIRCLE_BRANCH"'/g' source/_views/landing.html
+    # Update wraith config with Multidev URL for comparison
+    # This rewrite has to happen before wraith task is triggered
+    sed -i '4s/env/'"$normalize_branch"'/g' configs/wraith.yaml
 
     # Regenerate sculpin to reflect new redirect logic
     bin/sculpin generate --env=prod
