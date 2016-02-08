@@ -18,7 +18,7 @@ if [ "$CIRCLE_BRANCH" != "master" ] && [ "$CIRCLE_BRANCH" != "dev" ] && [ "$CIRC
     # rename gallery to index
     mv shots/gallery.html shots/index.html
     # rsync gallery diff from wraith to Valhalla
-    rsync --size-only --checksum --delete-after -rtlvz --ipv4 --progress -e 'ssh -p 2222' shots/index.html --temp-dir=../../tmp/ $normalize_branch.$STATIC_DOCS_UUID@appserver.$normalize_branch.$STATIC_DOCS_UUID.drush.in:files/docs/
+    rsync --size-only --checksum --delete-after -rtlvz --ipv4 --progress -e 'ssh -p 2222' shots/* --temp-dir=../../../tmp/ $normalize_branch.$STATIC_DOCS_UUID@appserver.$normalize_branch.$STATIC_DOCS_UUID.drush.in:files/docs/shots/
     if [ "$?" -eq "0" ]
     then
         echo "Success: Deployed to http://"$normalize_branch"-static-docs.pantheon.io/docs"

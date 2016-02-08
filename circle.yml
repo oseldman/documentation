@@ -33,13 +33,13 @@ test:
     - bundle exec rake
     # Run wraith
     - bundle exec wraith capture configs/wraith.yaml
+  post:
+    # Deploy diff regardless of test results
+    - bash scripts/deploy-wraith-diff.sh
+
 
 deployment:
   production:
     branch: master
     commands:
       - bash scripts/deploy-live.sh
-  multidev:
-    branch: /^(?!.*master).*$/
-    commands:
-      - bash scripts/deploy-wraith-diff.sh
