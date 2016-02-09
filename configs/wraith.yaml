@@ -8,6 +8,8 @@ domains:
 # AJAX in content, or all manner of other uses!
 #before_capture: 'javascript/global.js'
 
+before_capture: "configs/global_wait.js"
+
 # Type page URL paths below, here are a couple of examples.
 # They should exist for all of the domains you've specified above.
 paths:
