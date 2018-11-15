@@ -59,7 +59,7 @@ You will need to enter the following:
 
 2. **Single Sign-on URL**: The URL of your IdP that we will redirect to for authentication.
 
-3. **Certificate**: The X.509 certificate used to validate incoming SAML requests. Please share this via https://gist.github.com/
+3. **Certificate**: The X.509 certificate used to validate incoming SAML requests. Please share a .pem or .cer file attached to the ticket.  (You will have to reply via email to attach a file.)
 
 4. **Date/time to enable**: A time you'd like Pantheon to enable SSO, when you can test and ensure everything works.
 
